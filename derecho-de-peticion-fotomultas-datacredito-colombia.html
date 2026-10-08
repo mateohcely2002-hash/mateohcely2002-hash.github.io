@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Derecho de Petición Colombia: Fotomultas, Datacrédito, EPS y Laboral (PDF)</title>
+  <meta name="description" content="Genera en 30 segundos tu Derecho de Petición en Colombia para impugnar Fotomultas (Sentencia C-038/20), eliminar reportes de Datacrédito (Ley 2157), reclamos a EPS o Liquidación Laboral." />
+  <style>
+    :root { --bg:#070b14; --card:#11192c; --border:#233152; --accent:#10b981; --pink:#ec4899; --text:#f8fafc; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.5rem 1rem 3rem; line-height:1.55; }
+    .container { max-width:1100px; margin:0 auto; }
+    header { text-align:center; margin-bottom:1.5rem; }
+    .badge { display:inline-block; background:rgba(16,185,129,0.15); color:var(--accent); border:1px solid var(--accent); padding:0.25rem 0.85rem; border-radius:999px; font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; }
+    h1 { font-size:1.85rem; margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:780px; margin:0 auto; font-size:0.94rem; }
+    .grid { display:grid; grid-template-columns:1fr 1.15fr; gap:1.3rem; margin-top:1.4rem; }
+    @media (max-width:840px) { .grid { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.4rem; }
+    h2 { font-size:1.15rem; color:var(--accent); margin-bottom:0.75rem; }
+    label { display:block; font-size:0.83rem; color:var(--muted); margin:0.65rem 0 0.25rem; }
+    input, select, textarea { width:100%; padding:0.62rem 0.75rem; border-radius:8px; border:1px solid var(--border); background:#0b1120; color:#fff; font-size:0.9rem; }
+    textarea { height:90px; }
+    button { width:100%; margin-top:0.75rem; padding:0.82rem; border:none; border-radius:9px; background:var(--accent); color:#052e16; font-weight:800; cursor:pointer; font-size:0.93rem; }
+    .btn-pro { background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; }
+    .doc-sheet { background:#fff; color:#111827; padding:1.8rem; border-radius:8px; font-family:'Times New Roman',Georgia,serif; position:relative; font-size:0.92rem; line-height:1.5; white-space:pre-wrap; }
+    .watermark { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:900; color:rgba(239,68,68,0.16); transform:rotate(-24deg); pointer-events:none; text-align:center; }
+    .unlock-modal { background:#0c1324; border:2px solid var(--pink); border-radius:12px; padding:1.15rem; margin-top:1rem; }
+    .hidden { display:none; }
+    @media print {
+      body * { visibility:hidden; }
+      #docLegal, #docLegal * { visibility:visible; }
+      #docLegal { position:absolute; left:0; top:0; width:100%; box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Autoservicio Legal Colombia 24/7 · Art. 23 Constitución y Ley 1755 de 2015</span>
+      <h1>Generador Instantáneo de Derecho de Petición (Fotomultas, Datacrédito, EPS y Servicios)</h1>
+      <p class="lead">Ahorra los $150.000 COP de un tramitador. Redacta y previsualiza gratis tu documento con el sustento jurídico exacto vigente en Colombia, y desbloquea el PDF limpio listo para radicar por solo $12.000 COP.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. Datos de tu Solicitud</h2>
+        <label>Tipo de Derecho de Petición</label>
+        <select id="tipoCaso" onchange="render()">
+          <option value="fotomulta">Impugnación / Revocatoria de Fotomulta (Sentencia C-038 de 2020)</option>
+          <option value="datacredito">Eliminación de Reporte Negativo en Datacrédito / CIFIN (Ley 1266 y Ley 2157)</option>
+          <option value="eps">Urgencia EPS: Entrega de Medicamentos / Autorización de Cita o Cirugía</option>
+          <option value="servicios">Reclamo por Cobro Excesivo en Servicios Públicos (Ley 142 de 1994)</option>
+          <option value="laboral">Pago de Liquidación Laboral e Indemnización Moratoria (Art. 65 CST)</option>
+        </select>
+
+        <label>Ciudad y Fecha</label>
+        <input type="text" id="ciudadFecha" value="Bogotá D.C., Octubre de 2026" oninput="render()" />
+
+        <label>Entidad o Empresa Destinataria</label>
+        <input type="text" id="entidad" value="Secretaría de Movilidad / Entidad Correspondiente" oninput="render()" />
+
+        <label>Tu Nombre Completo</label>
+        <input type="text" id="nombre" value="Carlos Andrés Gómez" oninput="render()" />
+
+        <label>Tu Número de Cédula</label>
+        <input type="text" id="cedula" value="1.020.304.050" oninput="render()" />
+
+        <label>Detalle específico (Ej. Número de comparendo/placa, obligación, medicamento o factura)</label>
+        <textarea id="detalle" oninput="render()">Comparendo electrónico sobre vehículo placa ABC-123, el cual nunca me fue notificado personalmente dentro de los términos legales ni identifica plenamente quién conducía el vehículo al momento de la infracción.</textarea>
+
+        <label>Tu Correo y Celular para recibir respuesta de la entidad</label>
+        <input type="text" id="notificacion" value="carlos.gomez@email.com · Cel: 300 000 0000" oninput="render()" />
+
+        <button class="btn-pro" onclick="document.getElementById('modalPago').classList.remove('hidden')">
+          🔓 Desbloquear y Descargar PDF Oficial Sin Marca de Agua ($12.000 COP)
+        </button>
+
+        <div id="modalPago" class="unlock-modal hidden">
+          <h3 style="color:#f472b6; font-size:1rem; margin-bottom:0.4rem;">⚡ Desbloqueo Automático 24/7</h3>
+          <p style="font-size:0.84rem; margin-bottom:0.6rem;">
+            1️⃣ Envía <strong>$12.000 COP</strong> por <strong>Nequi</strong> al número: <strong style="color:#10b981; font-size:1rem;">302 343 5919</strong><br/>
+            2️⃣ Ingresa abajo el número de referencia Nequi para quitar la marca de agua e imprimir/guardar tu PDF al instante:
+          </p>
+          <input type="text" id="refNequi" placeholder="Referencia Nequi (mínimo 6 caracteres)" />
+          <button onclick="desbloquearPDF()">✅ Validar Referencia y Descargar PDF Oficial</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Vista Previa de tu Documento Jurídico</h2>
+        <div class="doc-sheet" id="docLegal">
+          <div class="watermark" id="marcaAgua">BORRADOR DE VISTA PREVIA<br/>DESBLOQUEA POR $12.000 COP EN NEQUI 3023435919</div>
+          <div id="contenidoDoc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let desbloqueado = false;
+
+    function render() {
+      const tipo = document.getElementById('tipoCaso').value;
+      const cf = document.getElementById('ciudadFecha').value.trim();
+      const ent = document.getElementById('entidad').value.trim();
+      const nom = document.getElementById('nombre').value.trim();
+      const cc = document.getElementById('cedula').value.trim();
+      const det = document.getElementById('detalle').value.trim();
+      const notif = document.getElementById('notificacion').value.trim();
+
+      const fundamentos = {
+        fotomulta: {
+          ref: 'DERECHO DE PETICIÓN — SOLICITUD DE REVOCATORIA DIRECTA Y NULIDAD DE FOTOMULTA',
+          leyes: '1. Artículo 23 y Artículo 29 (Debido Proceso y Presunción de Inocencia) de la Constitución Política de Colombia.\n2. Sentencia C-038 de 2020 de la Corte Constitucional, que declaró inexequible la solidaridad automática del propietario y exige que la autoridad identifique plenamente al infractor.\n3. Artículo 8 de la Ley 1843 de 2017 sobre los términos perentorios de validación y notificación personal.',
+          peticion: 'PRIMERO: Que se declare la nulidad y/o revocatoria directa del comparendo mencionado y se actualice de inmediato la base de datos del SIMIT.\nSEGUNDO: En subsidio, que se me entregue copia íntegra de la prueba que demuestre quién conducía el vehículo y la guía de notificación enviada dentro de los 3 días hábiles siguientes a la validación.'
+        },
+        datacredito: {
+          ref: 'DERECHO DE PETICIÓN — ELIMINACIÓN DE REPORTE NEGATIVO POR HABEAS DATA (LEY 1266 Y LEY 2157)',
+          leyes: '1. Artículos 15 y 23 de la Constitución Política de Colombia (Buen Nombre y Habeas Data).\n2. Artículo 12 de la Ley 1266 de 2008: obligación de enviar comunicación previa al titular con mínimo 20 días calendario antes de realizar el reporte negativo.\n3. Ley 2157 de 2021 sobre caducidad del dato negativo y actualización inmediata de la información.',
+          peticion: 'PRIMERO: Proceder con el retiro inmediato del reporte negativo ante las centrales de riesgo (DataCrédito Experian y TransUnion CIFIN).\nSEGUNDO: En caso de alegar notificación previa, aportar copia de la guía certificada de envío con mínimo 20 días de antelación al reporte.'
+        },
+        eps: {
+          ref: 'DERECHO DE PETICIÓN PRIORITARIO — PROTECCIÓN DEL DERECHO FUNDAMENTAL A LA SALUD (LEY 1751)',
+          leyes: '1. Artículo 49 de la Constitución Política y Ley Estatutaria 1751 de 2015 (La salud como derecho fundamental autónomo).\n2. Sentencia T-760 de 2008 de la Corte Constitucional: prohibición de imponer barreras administrativas o demoras injustificadas al paciente.',
+          peticion: 'PRIMERO: Autorizar y entregar de manera inmediata y sin fraccionamientos el medicamento, cita especializada o procedimiento ordenado por el médico tratante en un plazo máximo de 48 horas.'
+        },
+        servicios: {
+          ref: 'DERECHO DE PETICIÓN Y RECLAMO DE FACTURACIÓN — SILENCIO ADMINISTRATIVO POSITIVO (LEY 142 DE 1994)',
+          leyes: '1. Artículos 146, 150, 152, 154 y 158 de la Ley 142 de 1994 (Régimen de Servicios Públicos Domiciliarios).\n2. Prohibición de exigir el pago previo de las sumas objeto de reclamación (Art. 155 Ley 142 de 1994).',
+          peticion: 'PRIMERO: Reliquidar la factura descontando los cobros por desviación significativa o conceptos no autorizados, y expedir factura provisional únicamente por el promedio histórico mientras se resuelve de fondo.'
+        },
+        laboral: {
+          ref: 'DERECHO DE PETICIÓN — PAGO INMEDIATO DE LIQUIDACIÓN DE PRESTACIONES SOCIALES E INDEMNIZACIÓN (ART. 65 CST)',
+          leyes: '1. Artículos 23 y 53 de la Constitución Política de Colombia.\n2. Artículo 65 del Código Sustantivo del Trabajo (Indemnización moratoria de un día de salario por cada día de retardo en el pago de salarios y prestaciones al terminar el contrato).',
+          peticion: 'PRIMERO: Realizar el pago inmediato y total de mi liquidación definitiva de prestaciones sociales (cesantías, intereses, prima y vacaciones) junto con los salarios adeudados.'
+        }
+      }[tipo];
+
+      const texto = `${cf}\n\nSeñores:\n${ent.toUpperCase()}\nE. S. D.\n\nREFERENCIA: ${fundamentos.ref}\n\nYo, ${nom}, mayor de edad, identificado(a) con cédula de ciudadanía No. ${cc}, actuando en nombre propio y en ejercicio del Derecho Fundamental de Petición consagrado en el artículo 23 de la Constitución Política y regulado por la Ley 1755 de 2015, expongo los siguientes:\n\nI. HECHOS\n${det}\n\nII. FUNDAMENTOS DE DERECHO\n${fundamentos.leyes}\n\nIII. PETICIONES CONCRETAS\n${fundamentos.peticion}\n\nIV. NOTIFICACIONES\nRecibiré respuesta escrita dentro de los términos de ley en: ${notif}\n\nAtentamente,\n\n_______________________________\n${nom}\nC.C. No. ${cc}`;
+
+      document.getElementById('contenidoDoc').textContent = texto;
+      document.getElementById('marcaAgua').style.display = desbloqueado ? 'none' : 'flex';
+    }
+
+    function desbloquearPDF() {
+      const ref = (document.getElementById('refNequi').value || '').trim();
+      if (ref.length < 6) {
+        alert('Ingresa el número de referencia de tu envío Nequi al 302 343 5919 (mínimo 6 caracteres).');
+        return;
+      }
+      desbloqueado = true;
+      render();
+      alert('✅ ¡Documento desbloqueado sin marca de agua! Ahora se abrirá la ventana para guardar o imprimir tu PDF.');
+      window.print();
+    }
+
+    render();
+  </script>
+</body>
+</html>
