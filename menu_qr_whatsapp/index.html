@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Menú Digital QR + Carrito a WhatsApp ($20.000 COP)</title>
+  <style>
+    :root { --bg:#0b0f19; --card:#131b2e; --border:#23304f; --accent:#10b981; --amber:#f59e0b; --text:#f1f5f9; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.5rem 1rem; }
+    .container { max-width:1080px; margin:0 auto; }
+    header { text-align:center; margin-bottom:1.5rem; }
+    .badge { display:inline-block; background:rgba(245,158,11,0.15); color:var(--amber); border:1px solid var(--amber); padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    @media (max-width:800px) { .grid { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.35rem; }
+    h2 { font-size:1.15rem; color:var(--accent); margin-bottom:0.75rem; }
+    label { display:block; font-size:0.83rem; color:var(--muted); margin:0.65rem 0 0.25rem; }
+    input, textarea { width:100%; padding:0.6rem 0.75rem; border-radius:8px; border:1px solid var(--border); background:#0f1626; color:#fff; font-size:0.9rem; }
+    textarea { height:120px; }
+    button { width:100%; margin-top:0.75rem; padding:0.8rem; border:none; border-radius:8px; background:var(--accent); color:#052e16; font-weight:800; cursor:pointer; font-size:0.92rem; }
+    .btn-sec { background:#1e293b; color:#fff; border:1px solid var(--border); }
+    iframe { width:100%; height:470px; border:1px solid var(--border); border-radius:12px; background:#0f172a; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Tarea Ejecutada t-i-92054cc7 · Ticket Rápido $20.000 COP a Nequi 3023435919</span>
+      <h1>Fábrica de Menús Digitales con Carrito Suma-Total a WhatsApp</h1>
+      <p style="color:var(--muted); font-size:0.92rem;">Primero le muestras al restaurante/pastelería su propio menú sumando pedidos automáticamente. Activar su versión completa con QR para mesas e Instagram cuesta solo $20.000 COP vía Nequi 3023435919.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. Configurar Restaurante / Pastelería</h2>
+        <label>Nombre del Negocio</label>
+        <input type="text" id="nombre" value="Burger & Papas Artesanales" oninput="actualizar()" />
+
+        <label>WhatsApp de Pedidos del Restaurante</label>
+        <input type="text" id="wa" value="573153771321" oninput="actualizar()" />
+
+        <label>Productos (Nombre | Precio en COP sin puntos)</label>
+        <textarea id="productos" oninput="actualizar()">Hamburguesa Doble Carne + Papas | 28000
+Hamburguesa Especial Tocineta | 24000
+Papas Locas para 2 Personas | 22000
+Gaseosa / Jugo Natural | 6000
+Domicilio | 5000</textarea>
+
+        <button onclick="descargarMenu()">⬇️ 1. Descargar Menú Interactivo HTML</button>
+        <button class="btn-sec" onclick="copiarGanchoRestaurante()">📋 2. Copiar Mensaje 1 (Muestra Gratis al Restaurante)</button>
+        <button class="btn-sec" onclick="copiarCierre20k()">💳 3. Copiar Mensaje Cierre ($20.000 COP a Nequi 3023435919)</button>
+      </div>
+
+      <div class="card">
+        <h2>2. Vista Previa con Suma Automática en Vivo</h2>
+        <iframe id="frameMenu"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generarCodigoMenu() {
+      const nombre = document.getElementById('nombre').value.trim() || 'Restaurante';
+      const wa = (document.getElementById('wa').value || '573000000000').replace(/\D/g, '');
+      const items = document.getElementById('productos').value.split('\n').map(l => l.trim()).filter(Boolean).map((l, i) => {
+        const [nom, precio] = l.split('|');
+        return { id: i, nombre: (nom||'Producto').trim(), precio: parseInt((precio||'0').replace(/\D/g,'')) || 0 };
+      });
+
+      const itemsJson = JSON.stringify(items);
+      return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>${nombre}</title></head>
+<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;padding:14px;margin:0;display:flex;justify-content:center;">
+  <div style="width:100%;max-width:420px;background:#1e293b;border:1px solid #334155;border-radius:16px;padding:16px;">
+    <h2 style="margin:0 0 4px 0;color:#10b981;">🍔 ${nombre}</h2>
+    <p style="margin:0 0 12px 0;color:#94a3b8;font-size:13px;">Toca + para armar tu pedido. El total se calcula solo:</p>
+    <div id="lista"></div>
+    <input id="dir" placeholder="Tu nombre y dirección de entrega" oninput="render()" style="width:100%;box-sizing:border-box;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff;"/>
+    <div id="totalBox" style="margin-top:12px;padding:10px;background:#090d16;border-radius:8px;font-weight:700;text-align:center;color:#10b981;">Total: $0 COP</div>
+    <a id="btnWa" href="#" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-top:12px;padding:12px;border-radius:10px;background:#10b981;color:#052e16;font-weight:800;">📲 Enviar Pedido por WhatsApp</a>
+  </div>
+  <script>
+    const ITEMS = ${itemsJson};
+    const cant = { 0: 1 };
+    function cambiar(id, d) { cant[id] = Math.max(0, (cant[id]||0) + d); render(); }
+    function render() {
+      let total = 0;
+      let lineas = [];
+      document.getElementById('lista').innerHTML = ITEMS.map(it => {
+        const c = cant[it.id] || 0;
+        const sub = c * it.precio;
+        total += sub;
+        if (c > 0) lineas.push(c + 'x ' + it.nombre + ' ($' + sub.toLocaleString('es-CO') + ')');
+        return '<div style="display:flex;justify-content:space-between;align-items:center;background:#0f172a;padding:8px 10px;border-radius:8px;margin-bottom:6px;border:1px solid #334155;">' +
+          '<div><div style="font-size:14px;font-weight:600;">' + it.nombre + '</div><div style="font-size:12px;color:#10b981;">$' + it.precio.toLocaleString('es-CO') + ' COP</div></div>' +
+          '<div style="display:flex;align-items:center;gap:8px;"><button onclick="cambiar('+it.id+',-1)" style="width:28px;height:28px;border-radius:6px;border:none;background:#334155;color:#fff;cursor:pointer;">-</button><span>'+c+'</span><button onclick="cambiar('+it.id+',1)" style="width:28px;height:28px;border-radius:6px;border:none;background:#10b981;color:#052e16;font-weight:800;cursor:pointer;">+</button></div></div>';
+      }).join('');
+      document.getElementById('totalBox').textContent = 'Total a pagar: $' + total.toLocaleString('es-CO') + ' COP';
+      const dir = document.getElementById('dir').value || 'Por confirmar';
+      const txt = 'Hola ${nombre}! Quiero pedir:\\n' + (lineas.join('\\n') || '1x Pedido') + '\\n\\nTotal: $' + total.toLocaleString('es-CO') + ' COP\\nDirección: ' + dir;
+      document.getElementById('btnWa').href = 'https://wa.me/${wa}?text=' + encodeURIComponent(txt);
+    }
+    render();
+  <\/script>
+</body></html>`;
+    }
+
+    function actualizar() {
+      document.getElementById('frameMenu').srcdoc = generarCodigoMenu();
+    }
+
+    function descargarMenu() {
+      const blob = new Blob([generarCodigoMenu()], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'menu_interactivo.html';
+      a.click();
+    }
+
+    function copiarGanchoRestaurante() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const msg = `Hola equipo de ${nombre} 👋 Vi sus productos y les armé de regalo un pequeño Menú Interactivo donde el cliente elige cantidades, el sistema le suma el total solito y ya les manda el pedido con dirección lista a su WhatsApp. ¿Les paso una captura por aquí sin costo para que vean cómo quedó con el nombre de ${nombre}?`;
+      navigator.clipboard.writeText(msg);
+      alert('Mensaje de muestra gratis copiado.');
+    }
+
+    function copiarCierre20k() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const msg = `¡Qué bueno que te gustó! Para entregarte hoy mismo el Menú Interactivo completo de ${nombre} con todos tus platos, precios exactos y su código QR listo para publicar en Instagram y WhatsApp, cuesta solo $20.000 COP (pago único, sin mensualidades).\n\n📲 Puedes enviarlo por Nequi al 3023435919 y pasarme la foto de tu carta actual por aquí para dejártelo listo en 20 minutos.`;
+      navigator.clipboard.writeText(msg);
+      alert('Mensaje de cierre de $20.000 COP copiado.');
+    }
+
+    actualizar();
+  </script>
+</body>
+</html>
+

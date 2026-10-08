@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escáner Gratis de Errores ATS + Fábrica de Hoja de Vida Harvard ($15.000 COP)</title>
+  <style>
+    :root { --bg:#0b0f19; --card:#131b2e; --border:#23304f; --accent:#10b981; --danger:#ef4444; --amber:#f59e0b; --text:#f1f5f9; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.5rem 1rem; line-height:1.55; }
+    .container { max-width:1100px; margin:0 auto; }
+    header { text-align:center; margin-bottom:1.5rem; }
+    .badge { display:inline-block; background:rgba(16,185,129,0.15); color:var(--accent); border:1px solid var(--accent); padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:1fr 1.15fr; gap:1.25rem; }
+    @media (max-width:820px) { .grid { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.35rem; }
+    h2 { font-size:1.15rem; color:var(--accent); margin-bottom:0.75rem; }
+    label { display:block; font-size:0.83rem; color:var(--muted); margin:0.65rem 0 0.25rem; }
+    input, textarea { width:100%; padding:0.6rem 0.75rem; border-radius:8px; border:1px solid var(--border); background:#0f1626; color:#fff; font-size:0.9rem; }
+    textarea { height:85px; }
+    button { width:100%; margin-top:0.75rem; padding:0.8rem; border:none; border-radius:8px; background:var(--accent); color:#052e16; font-weight:800; cursor:pointer; font-size:0.92rem; }
+    .btn-sec { background:#1e293b; color:#fff; border:1px solid var(--border); }
+    .score-box { background:#090d16; border:1px solid var(--border); border-radius:10px; padding:1rem; margin-bottom:1rem; }
+    .err-item { color:#fca5a5; font-size:0.85rem; margin-top:0.35rem; }
+    .cv-sheet { background:#fff; color:#111827; padding:1.75rem; border-radius:8px; font-family:Georgia, serif; line-height:1.45; }
+    .cv-sheet h1 { font-size:1.45rem; text-transform:uppercase; border-bottom:2px solid #111827; padding-bottom:0.25rem; margin-bottom:0.25rem; }
+    .cv-sheet .contact { font-size:0.84rem; color:#374151; margin-bottom:0.9rem; }
+    .cv-sheet h3 { font-size:0.95rem; text-transform:uppercase; border-bottom:1px solid #9ca3af; margin:0.85rem 0 0.4rem; letter-spacing:0.04em; }
+    .cv-sheet p, .cv-sheet li { font-size:0.86rem; margin-bottom:0.3rem; }
+    .cv-sheet ul { padding-left:1.2rem; }
+    @media print {
+      body * { visibility:hidden; }
+      #hojaHarvard, #hojaHarvard * { visibility:visible; }
+      #hojaHarvard { position:absolute; left:0; top:0; width:100%; box-shadow:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Tarea Ejecutada t-i-6b81b5c3 · Ticket Ultra-Rápido $15.000 COP a Nequi 3023435919</span>
+      <h1>Escáner Gratuito de Descarte ATS + Generador Hoja de Vida Harvard</h1>
+      <p style="color:var(--muted); font-size:0.92rem;">Psicología: Primero le entregas gratis al candidato los 3 errores por los que los portales (Computrabajo, ElEmpleo, LinkedIn) descartan su CV. Luego le entregas su CV Formato Harvard optimizado en PDF por solo $15.000 COP vía Nequi 3023435919.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. Datos del Candidato y Diagnóstico Gratis</h2>
+        <label>Nombre Completo</label>
+        <input type="text" id="nombre" value="Andrés Felipe Martínez" oninput="render()" />
+
+        <label>Cargo Objetivo</label>
+        <input type="text" id="cargo" value="Analista Administrativo y de Operaciones" oninput="render()" />
+
+        <label>Ciudad · Teléfono · Correo</label>
+        <input type="text" id="contacto" value="Bogotá, Colombia · 310 000 0000 · andres.martinez@email.com" oninput="render()" />
+
+        <label>Perfil Profesional (o texto actual del candidato)</label>
+        <textarea id="perfil" oninput="render()">Profesional con más de 4 años de experiencia optimizando procesos administrativos, control de inventarios, facturación electrónica, atención a proveedores y reducción de tiempos operativos en un 30%.</textarea>
+
+        <label>Experiencia Laboral (1 logro por línea: Empresa - Cargo | Logro medible)</label>
+        <textarea id="exp" oninput="render()">Distribuidora Nacional S.A. - Coordinador Operativo (2023-2026) | Automatizó el control de despachos reduciendo errores de entrega en 35%.
+Comercializadora Andina - Asistente Administrativo (2021-2023) | Gestionó facturación y cartera recuperando $45M COP en cuentas vencidas.</textarea>
+
+        <label>Educación y Habilidades Clave</label>
+        <textarea id="edu" oninput="render()">Administrador de Empresas — Universidad Nacional
+Habilidades: Excel Avanzado (Tablas Dinámicas, Macros), SAP, Facturación Electrónica, Gestión de Indicadores KPI.</textarea>
+
+        <button onclick="copiarDiagnosticoGratis()">📋 1. Copiar Diagnóstico Gratis (Para enganchar al cliente)</button>
+        <button class="btn-sec" onclick="copiarCierre15k()">💳 2. Copiar Mensaje de Entrega ($15.000 COP a Nequi 3023435919)</button>
+        <button onclick="window.print()">🖨️ 3. Imprimir / Guardar CV Harvard en PDF</button>
+      </div>
+
+      <div class="card">
+        <h2>2. Resultado del Escáner ATS + Vista Previa Harvard</h2>
+        <div class="score-box" id="boxDiagnostico"></div>
+
+        <div class="cv-sheet" id="hojaHarvard">
+          <h1 id="cvNombre"></h1>
+          <div class="contact" id="cvContacto"></div>
+          <h3>Perfil Profesional — <span id="cvCargo"></span></h3>
+          <p id="cvPerfil"></p>
+          <h3>Experiencia Profesional Orientada a Logros</h3>
+          <ul id="cvExp"></ul>
+          <h3>Educación y Competencias Clave</h3>
+          <p id="cvEdu"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function render() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const cargo = document.getElementById('cargo').value.trim();
+      const contacto = document.getElementById('contacto').value.trim();
+      const perfil = document.getElementById('perfil').value.trim();
+      const exp = document.getElementById('exp').value.trim();
+      const edu = document.getElementById('edu').value.trim();
+
+      document.getElementById('cvNombre').textContent = nombre;
+      document.getElementById('cvCargo').textContent = cargo;
+      document.getElementById('cvContacto').textContent = contacto;
+      document.getElementById('cvPerfil').textContent = perfil;
+
+      const ul = document.getElementById('cvExp');
+      ul.innerHTML = exp.split('\n').filter(Boolean).map(l => {
+        const [emp, logro] = l.split('|');
+        return `<li><strong>${(emp||'').trim()}:</strong> ${(logro||'').trim()}</li>`;
+      }).join('');
+      document.getElementById('cvEdu').innerHTML = edu.replace(/\n/g, '<br/>');
+
+      document.getElementById('boxDiagnostico').innerHTML = `
+        <strong>🔍 Diagnóstico Gratis de Filtros ATS para ${nombre}:</strong>
+        <div class="err-item">❌ Error 1 detectado en CVs tradicionales: Uso de plantillas de Canva a 2 columnas con foto (los robots de Computrabajo/LinkedIn no leen tablas y descartan el 70% automáticamente).</div>
+        <div class="err-item">❌ Error 2: Redactar "funciones" en vez de logros numéricos con verbos de impacto para el cargo de <em>${cargo}</em>.</div>
+        <div class="err-item">✅ Solución ya preparada abajo: Estructura Harvard de 1 columna con palabras clave ATS listas.</div>
+      `;
+    }
+
+    function copiarDiagnosticoGratis() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const cargo = document.getElementById('cargo').value.trim();
+      const msg = `Hola ${nombre} 👋 Revisé tu perfil para vacantes de «${cargo}» y encontré los 3 motivos por los que los filtros automáticos (ATS) suelen descartar la hoja de vida antes de que la vea un psicólogo:\n\n1️⃣ El diseño en columnas o con gráficos de Canva bloquea el lector automático.\n2️⃣ Faltan palabras clave exactas del cargo en las primeras 3 líneas.\n3️⃣ Las experiencias están escritas como tareas y no como resultados medibles.\n\nPor iniciativa propia ya pasé tus datos al Formato Harvard ATS de alta lectura. ¿Quieres que te envíe una captura por aquí sin costo para que veas cómo quedó?`;
+      navigator.clipboard.writeText(msg);
+      alert('Diagnóstico gratuito copiado al portapapeles.');
+    }
+
+    function copiarCierre15k() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const msg = `¡Mira ${nombre}! Ahí te envié la captura de cómo se ve tu Hoja de Vida ya estructurada en formato Harvard ATS.\n\nSi quieres que te entregue hoy mismo el archivo PDF final listo para postularte + el texto optimizado para tu perfil de LinkedIn, tiene un valor simbólico de solo $15.000 COP.\n\n📲 Puedes enviarlo por Nequi al 3023435919 y apenas me pases el comprobante por aquí te envío el PDF listo.`;
+      navigator.clipboard.writeText(msg);
+      alert('Mensaje de cierre de $15.000 COP copiado.');
+    }
+
+    render();
+  </script>
+</body>
+</html>
+

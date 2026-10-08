@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panichelo Panadería Saludable · Armar Pedido Rápido por WhatsApp</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --accent:#10b981; --text:#f8fafc; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.25rem; display:flex; justify-content:center; }
+    .app { width:100%; max-width:460px; background:var(--card); border:1px solid #334155; border-radius:16px; padding:1.4rem; box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+    .tag { display:inline-block; background:rgba(16,185,129,0.15); color:var(--accent); font-size:0.76rem; font-weight:700; padding:0.2rem 0.65rem; border-radius:999px; margin-bottom:0.5rem; }
+    h1 { font-size:1.35rem; margin-bottom:0.25rem; }
+    p.sub { color:var(--muted); font-size:0.86rem; margin-bottom:1.1rem; }
+    .item { display:flex; align-items:center; gap:0.65rem; background:#0f172a; border:1px solid #334155; padding:0.7rem 0.85rem; border-radius:10px; margin-bottom:0.5rem; cursor:pointer; }
+    .item input { width:18px; height:18px; accent-color:var(--accent); }
+    .item span { display:flex; justify-content:space-between; width:100%; font-size:0.9rem; }
+    .item small { color:var(--accent); font-weight:600; }
+    label.fld { display:block; font-size:0.82rem; color:var(--muted); margin:0.75rem 0 0.3rem; }
+    input[type="text"], select { width:100%; padding:0.65rem 0.75rem; border-radius:8px; border:1px solid #334155; background:#0f172a; color:#fff; font-size:0.9rem; }
+    .preview { margin-top:0.9rem; background:#090d16; border:1px dashed #334155; border-radius:8px; padding:0.75rem; font-size:0.82rem; color:#cbd5e1; white-space:pre-wrap; }
+    .btn { display:block; text-align:center; text-decoration:none; width:100%; margin-top:1rem; padding:0.85rem; border-radius:10px; background:var(--accent); color:#052e16; font-weight:800; font-size:0.96rem; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <span class="tag">Cali · Panadería Saludable y Funcional</span>
+    <h1>Panichelo Panadería Saludable</h1>
+    <p class="sub">Selecciona tus productos y envía tu pedido listo con dirección al WhatsApp oficial.</p>
+
+    <div id="listaItems">
+      <label class="item">
+        <input type="checkbox" value="Pan Artesanal Saludable ($18.000 COP)" onchange="actualizarResumen()" checked/>
+        <span><strong>Pan Artesanal Saludable</strong> <small>$18.000 COP</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Mogollas / Pan Integral Pack ($15.000 COP)" onchange="actualizarResumen()" />
+        <span><strong>Mogollas / Pan Integral Pack</strong> <small>$15.000 COP</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Postre Saludable Sin Azúcar ($14.000 COP)" onchange="actualizarResumen()" />
+        <span><strong>Postre Saludable Sin Azúcar</strong> <small>$14.000 COP</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Combo Desayuno Saludable ($26.000 COP)" onchange="actualizarResumen()" />
+        <span><strong>Combo Desayuno Saludable</strong> <small>$26.000 COP</small></span>
+      </label>
+    </div>
+
+    <label class="fld">Tu nombre</label>
+    <input type="text" id="nombreCliente" placeholder="Ej. Camila Gómez" oninput="actualizarResumen()" />
+
+    <label class="fld">Forma de pago preferida (Nequi, Efectivo, Transferencia)</label>
+    <select id="horario" onchange="actualizarResumen()">
+        <option value="Pago por Nequi / Transferencia">Pago por Nequi / Transferencia</option>
+        <option value="Efectivo contraentrega">Efectivo contraentrega</option>
+        <option value="Recoger en el punto">Recoger en el punto</option>
+    </select>
+
+    <label class="fld">Dirección de entrega y barrio</label>
+    <input type="text" id="extra" placeholder="Escribe aquí..." oninput="actualizarResumen()" />
+
+    <div class="preview" id="vistaPrevia"></div>
+
+    <a id="btnEnviarWa" class="btn" href="https://wa.me/573208774898" target="_blank">
+      📲 Enviar ahora al WhatsApp de Panichelo Panadería Saludable
+    </a>
+  </div>
+
+  <script>
+    function actualizarResumen() {
+      const checks = Array.from(document.querySelectorAll('#listaItems input:checked')).map(c => '• ' + c.value);
+      const nombre = document.getElementById('nombreCliente').value.trim() || 'Cliente';
+      const horario = document.getElementById('horario').value;
+      const extra = document.getElementById('extra').value.trim() || 'Por confirmar';
+      const seleccion = checks.length ? checks.join('\n') : '• Información general';
+
+      const msg = `Hola equipo de Panichelo Panadería Saludable 👋\nSoy *${nombre}* y quiero confirmar:\n${seleccion}\n\n🕒 Preferencia: ${horario}\n📍 Detalle: ${extra}`;
+      document.getElementById('vistaPrevia').textContent = msg;
+      document.getElementById('btnEnviarWa').href = `https://wa.me/573208774898?text=${encodeURIComponent(msg)}`;
+    }
+    actualizarResumen();
+  </script>
+</body>
+</html>

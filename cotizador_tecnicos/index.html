@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Cotizaciones Instantáneas para Técnicos y Freelancers ($25.000 COP)</title>
+  <style>
+    :root { --bg:#0b0f19; --card:#131b2e; --border:#23304f; --accent:#10b981; --blue:#3b82f6; --text:#f1f5f9; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.5rem 1rem; }
+    .container { max-width:1060px; margin:0 auto; }
+    header { text-align:center; margin-bottom:1.5rem; }
+    .badge { display:inline-block; background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid var(--blue); padding:0.25rem 0.8rem; border-radius:999px; font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    @media (max-width:800px) { .grid { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.35rem; }
+    h2 { font-size:1.15rem; color:var(--accent); margin-bottom:0.75rem; }
+    label { display:block; font-size:0.83rem; color:var(--muted); margin:0.65rem 0 0.25rem; }
+    input, textarea { width:100%; padding:0.6rem 0.75rem; border-radius:8px; border:1px solid var(--border); background:#0f1626; color:#fff; font-size:0.9rem; }
+    textarea { height:120px; }
+    button { width:100%; margin-top:0.75rem; padding:0.8rem; border:none; border-radius:8px; background:var(--accent); color:#052e16; font-weight:800; cursor:pointer; font-size:0.92rem; }
+    .btn-sec { background:#1e293b; color:#fff; border:1px solid var(--border); }
+    iframe { width:100%; height:460px; border:1px solid var(--border); border-radius:12px; background:#0f172a; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Tarea Ejecutada t-i-65820e2f · Ticket Rápido $25.000 COP a Nequi 3023435919</span>
+      <h1>Generador de Cotizadores Automáticos para Técnicos y Profesionales</h1>
+      <p style="color:var(--muted); font-size:0.92rem;">Para técnicos de mantenimiento, fumigación, limpieza de muebles, sonido/eventos, contadores o diseñadores: filtra curiosos cotizando en 10 segundos y enviando la orden lista a WhatsApp.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>1. Datos del Técnico / Profesional</h2>
+        <label>Nombre del Servicio o Profesional</label>
+        <input type="text" id="nombre" value="TecniClima · Mantenimiento y Lavado Express" oninput="actualizar()" />
+
+        <label>WhatsApp del Técnico</label>
+        <input type="text" id="wa" value="573102904913" oninput="actualizar()" />
+
+        <label>Servicios Cotizables (Servicio | Tarifa Base COP)</label>
+        <textarea id="servicios" oninput="actualizar()">Visita Técnica + Diagnóstico | 40000
+Mantenimiento Preventivo Completo | 95000
+Lavado y Desinfección Profunda a Domicilio | 85000
+Recarga / Ajuste de Repuestos Básicos | 60000
+Atención de Urgencia Hoy Mismo | 35000</textarea>
+
+        <button onclick="descargarCotizador()">⬇️ 1. Descargar Cotizador HTML del Técnico</button>
+        <button class="btn-sec" onclick="copiarGancho()">📋 2. Copiar Mensaje 1 (Regalo de Curiosidad)</button>
+        <button class="btn-sec" onclick="copiarCierre()">💳 3. Copiar Mensaje Cierre ($25.000 COP a Nequi 3023435919)</button>
+      </div>
+
+      <div class="card">
+        <h2>2. Vista Previa del Cotizador en Vivo</h2>
+        <iframe id="frameCotizador"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function armarHTML() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const wa = (document.getElementById('wa').value || '573000000000').replace(/\D/g, '');
+      const items = document.getElementById('servicios').value.split('\n').map(l => l.trim()).filter(Boolean).map((l, i) => {
+        const [nom, precio] = l.split('|');
+        return { id: i, nombre: (nom||'Servicio').trim(), precio: parseInt((precio||'0').replace(/\D/g,'')) || 0 };
+      });
+      const itemsJson = JSON.stringify(items);
+
+      return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>${nombre}</title></head>
+<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;padding:14px;margin:0;display:flex;justify-content:center;">
+  <div style="width:100%;max-width:420px;background:#1e293b;border:1px solid #334155;border-radius:16px;padding:16px;">
+    <h2 style="margin:0 0 4px 0;color:#60a5fa;">⚡ ${nombre}</h2>
+    <p style="margin:0 0 12px 0;color:#94a3b8;font-size:13px;">Selecciona lo que necesitas para calcular tu cotización al instante:</p>
+    <div id="lista"></div>
+    <input id="barrio" placeholder="Tu nombre y barrio/ubicación" oninput="calc()" style="width:100%;box-sizing:border-box;margin-top:8px;padding:10px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff;"/>
+    <div id="tot" style="margin-top:12px;padding:10px;background:#090d16;border-radius:8px;font-weight:700;text-align:center;color:#10b981;">Cotización Estimada: $0 COP</div>
+    <a id="btn" href="#" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-top:12px;padding:12px;border-radius:10px;background:#10b981;color:#052e16;font-weight:800;">📲 Agendar Servicio con esta Cotización</a>
+  </div>
+  <script>
+    const S = ${itemsJson};
+    function calc(){
+      const checks = Array.from(document.querySelectorAll('#lista input:checked'));
+      let suma = 0; let nombres = [];
+      checks.forEach(c => { suma += parseInt(c.dataset.p); nombres.push('• ' + c.value); });
+      document.getElementById('tot').textContent = 'Cotización Estimada: $' + suma.toLocaleString('es-CO') + ' COP';
+      const b = document.getElementById('barrio').value || 'Por confirmar';
+      const msg = 'Hola ${nombre}! Hice mi cotización en línea:\\n' + (nombres.join('\\n')||'• Consulta') + '\\nValor estimado: $' + suma.toLocaleString('es-CO') + ' COP\\nCliente/Barrio: ' + b;
+      document.getElementById('btn').href = 'https://wa.me/${wa}?text=' + encodeURIComponent(msg);
+    }
+    document.getElementById('lista').innerHTML = S.map((s,i) => '<label style="display:flex;justify-content:space-between;align-items:center;background:#0f172a;padding:9px 10px;border-radius:8px;margin-bottom:6px;border:1px solid #334155;cursor:pointer;"><span style="font-size:13px;"><input type="checkbox" '+(i===0?'checked':'')+' data-p="'+s.precio+'" value="'+s.nombre+'" onchange="calc()" style="margin-right:8px;accent-color:#10b981;"/>'+s.nombre+'</span><strong style="font-size:13px;color:#10b981;">$'+s.precio.toLocaleString('es-CO')+'</strong></label>').join('');
+    calc();
+  <\/script>
+</body></html>`;
+    }
+
+    function actualizar() { document.getElementById('frameCotizador').srcdoc = armarHTML(); }
+    function descargarCotizador() {
+      const b = new Blob([armarHTML()], { type: 'text/html;charset=utf-8' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'cotizador_instantaneo.html'; a.click();
+    }
+    function copiarGancho() {
+      const n = document.getElementById('nombre').value.trim();
+      navigator.clipboard.writeText(`Hola equipo de ${n} 👋 Vi sus servicios y les armé de muestra una pequeña Calculadora de Cotizaciones Instantáneas con el nombre de ${n}, para que los clientes calculen su tarifa en 10 segundos y les llegue el servicio ya confirmado al WhatsApp. ¿Les paso una captura por aquí sin costo para que la vean?`);
+      alert('Mensaje de muestra gratis copiado.');
+    }
+    function copiarCierre() {
+      const n = document.getElementById('nombre').value.trim();
+      navigator.clipboard.writeText(`¡Excelente! Para dejarte hoy mismo la Calculadora de Cotizaciones de ${n} personalizada con todas tus tarifas reales lista para tu WhatsApp e Instagram, tiene un valor único de solo $25.000 COP (sin mensualidades). Puedes enviarlo por Nequi al 3023435919 y en 20 minutos te la entrego lista.`);
+      alert('Mensaje de cierre de $25.000 COP copiado.');
+    }
+    actualizar();
+  </script>
+</body>
+</html>
+

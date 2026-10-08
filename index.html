@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas Gratis para Negocios y Empleo en Colombia · Generador Instantáneo IA</title>
+  <meta name="description" content="Crea gratis tu Menú Digital QR para WhatsApp, Catálogo de Pedidos, Agendador de Citas o tu Hoja de Vida Formato Harvard ATS para Colombia en 30 segundos." />
+  <style>
+    :root {
+      --bg:#070b14; --card:#11192c; --border:#233152;
+      --accent:#10b981; --accent-hover:#059669;
+      --blue:#3b82f6; --pink:#ec4899; --amber:#f59e0b;
+      --text:#f8fafc; --muted:#94a3b8;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); line-height:1.55; padding:1.5rem 1rem 3rem; }
+    .container { max-width:1120px; margin:0 auto; }
+    header { text-align:center; margin-bottom:1.5rem; }
+    .badge { display:inline-block; background:rgba(16,185,129,0.15); color:var(--accent); border:1px solid var(--accent); padding:0.25rem 0.85rem; border-radius:999px; font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; }
+    h1 { font-size:1.9rem; margin-bottom:0.4rem; }
+    p.lead { color:var(--muted); max-width:760px; margin:0 auto; font-size:0.95rem; }
+    .nav-tabs { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; margin:1.4rem 0; }
+    .tab { padding:0.65rem 1.1rem; border-radius:10px; border:1px solid var(--border); background:var(--card); color:var(--muted); cursor:pointer; font-weight:700; font-size:0.88rem; }
+    .tab.active { background:var(--accent); color:#052e16; border-color:var(--accent); }
+    .grid { display:grid; grid-template-columns:1fr 1.1fr; gap:1.3rem; }
+    @media (max-width:840px) { .grid { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.4rem; }
+    .card h2 { font-size:1.15rem; color:var(--accent); margin-bottom:0.75rem; }
+    label { display:block; font-size:0.83rem; color:var(--muted); margin:0.65rem 0 0.25rem; }
+    input, select, textarea { width:100%; padding:0.62rem 0.75rem; border-radius:8px; border:1px solid var(--border); background:#0b1120; color:#fff; font-size:0.9rem; }
+    textarea { height:110px; }
+    button { width:100%; margin-top:0.75rem; padding:0.82rem; border:none; border-radius:9px; background:var(--accent); color:#052e16; font-weight:800; cursor:pointer; font-size:0.93rem; }
+    button:hover { background:var(--accent-hover); color:#fff; }
+    .btn-free { background:#1e293b; color:#fff; border:1px solid var(--border); }
+    .btn-pro { background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; }
+    .free-gift-box { background:rgba(16,185,129,0.1); border:1px solid var(--accent); border-radius:10px; padding:0.9rem; margin-bottom:1rem; font-size:0.86rem; }
+    .unlock-modal { background:#0c1324; border:2px solid var(--pink); border-radius:12px; padding:1.2rem; margin-top:1rem; }
+    .unlock-modal h3 { color:#f472b6; font-size:1.05rem; margin-bottom:0.4rem; }
+    .hidden { display:none; }
+    iframe { width:100%; height:440px; border:1px solid var(--border); border-radius:12px; background:#0f172a; }
+    .cv-preview { background:#fff; color:#111827; padding:1.5rem; border-radius:8px; font-family:Georgia,serif; position:relative; }
+    .watermark { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.1rem; font-weight:900; color:rgba(239,68,68,0.16); transform:rotate(-24deg); pointer-events:none; text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Autoservicio Automático 24/7 · Prueba Gratis en Vivo · Entrega Instantánea</span>
+      <h1>Generador Inteligente para Negocios y Empleo en Colombia</h1>
+      <p class="lead">1️⃣ Crea y prueba gratis tu herramienta en tiempo real. 2️⃣ Recibe un diagnóstico o muestra gratuita al instante. 3️⃣ Si quieres descargar la versión PRO completa sin marca de agua, se desbloquea automáticamente aquí mismo en 10 segundos.</p>
+    </header>
+
+    <div class="nav-tabs">
+      <button class="tab active" id="tMenu" onclick="setModo('menu')">🍔 1. Menú Digital QR y Catálogo WhatsApp</button>
+      <button class="tab" id="tCitas" onclick="setModo('citas')">📅 2. Agendador de Citas 24/7 para WhatsApp</button>
+      <button class="tab" id="tCV" onclick="setModo('cv')">📄 3. Hoja de Vida Formato Harvard ATS</button>
+    </div>
+
+    <div class="grid">
+      <!-- PANEL IZQUIERDO: CONFIGURACIÓN EN VIVO -->
+      <div class="card">
+        <h2 id="tituloConfig">1. Personaliza tu Menú / Catálogo Gratis</h2>
+
+        <div id="formNegocio">
+          <label>Nombre de tu Negocio o Servicio</label>
+          <input type="text" id="negNombre" value="Delicias & Café Real" oninput="actualizarTodo()" />
+
+          <label>Tu Número de WhatsApp (donde recibirás los pedidos o citas)</label>
+          <input type="text" id="negWa" value="573001234567" oninput="actualizarTodo()" />
+
+          <label id="lblItems">Tus Productos o Servicios (1 por línea: Nombre | Precio en COP)</label>
+          <textarea id="negItems" oninput="actualizarTodo()">Combo Especial de la Casa | 28000
+Menú Ejecutivo / Producto Estrella | 22000
+Adición Especial / Postre | 9000
+Bebida Natural | 6000
+Servicio a Domicilio | 5000</textarea>
+        </div>
+
+        <div id="formCV" class="hidden">
+          <label>Tu Nombre Completo</label>
+          <input type="text" id="cvNom" value="Camila Andrea Rojas" oninput="actualizarTodo()" />
+          <label>Cargo al que aspiras</label>
+          <input type="text" id="cvCargo" value="Coordinadora Comercial y Servicio al Cliente" oninput="actualizarTodo()" />
+          <label>Ciudad · Celular · Email</label>
+          <input type="text" id="cvCont" value="Medellín · 300 000 0000 · camila.rojas@email.com" oninput="actualizarTodo()" />
+          <label>Resumen de tu Perfil Profesional</label>
+          <textarea id="cvPerf" oninput="actualizarTodo()">Profesional orientada a resultados con 4 años de experiencia en gestión comercial, retención de clientes, manejo de CRM y cumplimiento de presupuestos de ventas por encima del 115%.</textarea>
+          <label>Experiencias y Logros (Empresa - Cargo | Logro principal)</label>
+          <textarea id="cvExp" oninput="actualizarTodo()">Grupo Comercial Antioquia - Ejecutiva de Cuenta (2023-2026) | Incrementó la facturación mensual en un 28% mediante reactivación de clientes B2B.
+Soluciones Integrales S.A. - Asesora Senior (2021-2023) | Redujo el tiempo de respuesta de cotizaciones de 24 horas a 15 minutos.</textarea>
+        </div>
+
+        <button class="btn-free" onclick="entregarRegaloGratis()">🎁 Paso 1: Obtener Diagnóstico + Muestra Gratis Ahora</button>
+        <button class="btn-pro" onclick="mostrarDesbloqueoPro()">🔓 Paso 2: Desbloquear y Descargar Versión PRO Sin Marca de Agua ($15.000 COP)</button>
+
+        <!-- MODAL DE DESBLOQUEO AUTOMÁTICO 24/7 SIN INTERVENCIÓN HUMANA -->
+        <div id="cajaDesbloqueo" class="unlock-modal hidden">
+          <h3>⚡ Desbloqueo Automático Instantáneo (24/7)</h3>
+          <p style="font-size:0.84rem; color:#e2e8f0; margin-bottom:0.6rem;">
+            Tu archivo personalizado ya está compilado en memoria. Para descargarlo limpio (sin marca de agua) + el Kit de Guiones de Venta por WhatsApp:
+          </p>
+          <div style="background:#070b14; padding:0.75rem; border-radius:8px; border:1px solid #334155; font-size:0.85rem; margin-bottom:0.65rem;">
+            1️⃣ Envía <strong>$15.000 COP</strong> por <strong>Nequi</strong> al número: <strong style="color:#10b981; font-size:1rem;">302 343 5919</strong><br/>
+            2️⃣ Escribe abajo el <strong>Número de Referencia / Comprobante Nequi</strong> (ej. M12345678) y el sistema liberará tu descarga automáticamente en este mismo instante:
+          </div>
+          <label>Número de Referencia Nequi (mínimo 6 caracteres)</label>
+          <input type="text" id="refNequi" placeholder="Ej: M8492014 o últimos 6 dígitos del comprobante" />
+          <button onclick="validarYDescargarPro()">✅ Validar Referencia y Descargar mi Archivo PRO Ahora</button>
+        </div>
+      </div>
+
+      <!-- PANEL DERECHO: VISTA PREVIA EN VIVO + REGALO GRATIS -->
+      <div class="card">
+        <h2>2. Tu Herramienta Funcionando en Tiempo Real</h2>
+        <div id="regaloBox" class="free-gift-box">
+          <strong>💡 Tip Psicológico Gratis Activo:</strong> Los negocios que permiten al cliente armar su pedido o cita en 3 toques aumentan sus cierres por WhatsApp en un <strong>42%</strong> porque eliminan la espera del chat. ¡Pruébalo abajo en vivo!
+        </div>
+
+        <div id="contenedorIframe">
+          <iframe id="liveFrame"></iframe>
+        </div>
+
+        <div id="contenedorCV" class="hidden">
+          <div class="cv-preview" id="hojaCV">
+            <div class="watermark" id="marcaAguaCV">VISTA PREVIA GRATIS<br/>DESBLOQUEA SIN MARCA POR $15.000 COP</div>
+            <h1 id="pNom" style="font-size:1.35rem; border-bottom:2px solid #111; padding-bottom:4px;"></h1>
+            <div id="pCont" style="font-size:0.82rem; color:#4b5563; margin:4px 0 10px;"></div>
+            <h3 style="font-size:0.9rem; border-bottom:1px solid #9ca3af; margin-top:8px;">PERFIL PROFESIONAL — <span id="pCargo"></span></h3>
+            <p id="pPerf" style="font-size:0.84rem; margin-top:4px;"></p>
+            <h3 style="font-size:0.9rem; border-bottom:1px solid #9ca3af; margin-top:10px;">EXPERIENCIA ORIENTADA A RESULTADOS</h3>
+            <ul id="pExp" style="font-size:0.84rem; padding-left:18px; margin-top:4px;"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let modo = 'menu';
+    let desbloqueadoPro = false;
+
+    function setModo(m) {
+      modo = m;
+      document.getElementById('tMenu').classList.toggle('active', m === 'menu');
+      document.getElementById('tCitas').classList.toggle('active', m === 'citas');
+      document.getElementById('tCV').classList.toggle('active', m === 'cv');
+
+      document.getElementById('formNegocio').classList.toggle('hidden', m === 'cv');
+      document.getElementById('formCV').classList.toggle('hidden', m !== 'cv');
+      document.getElementById('contenedorIframe').classList.toggle('hidden', m === 'cv');
+      document.getElementById('contenedorCV').classList.toggle('hidden', m !== 'cv');
+
+      if (m === 'menu') {
+        document.getElementById('tituloConfig').textContent = '1. Personaliza tu Menú / Catálogo Gratis';
+        document.getElementById('lblItems').textContent = 'Tus Productos (1 por línea: Nombre | Precio en COP)';
+      } else if (m === 'citas') {
+        document.getElementById('tituloConfig').textContent = '1. Personaliza tu Agendador de Citas 24/7';
+        document.getElementById('lblItems').textContent = 'Tus Servicios (1 por línea: Servicio | Precio o Valoración)';
+      } else {
+        document.getElementById('tituloConfig').textContent = '1. Escáner y Generador Hoja de Vida Harvard ATS';
+      }
+      actualizarTodo();
+    }
+
+    function construirAppHTML(conMarcaAgua) {
+      const nombre = document.getElementById('negNombre').value.trim() || 'Mi Negocio';
+      const wa = (document.getElementById('negWa').value || '573000000000').replace(/\D/g, '');
+      const esCitas = modo === 'citas';
+      const items = document.getElementById('negItems').value.split('\n').map(l => l.trim()).filter(Boolean).map((l, i) => {
+        const [nom, precio] = l.split('|');
+        return { id: i, nombre: (nom||'Item').trim(), precio: parseInt((precio||'0').replace(/\D/g,'')) || 0 };
+      });
+      const itemsJson = JSON.stringify(items);
+      const avisoDemo = conMarcaAgua
+        ? `<div style="background:#f59e0b;color:#052e16;font-size:11px;font-weight:800;text-align:center;padding:4px;border-radius:6px;margin-bottom:8px;">VERSIÓN DEMO GRATUITA · DESBLOQUEA LA VERSIÓN PRO SIN AVISO</div>`
+        : '';
+
+      return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>${nombre}</title></head>
+<body style="background:#0f172a;color:#f8fafc;font-family:sans-serif;padding:12px;margin:0;display:flex;justify-content:center;">
+  <div style="width:100%;max-width:420px;background:#1e293b;border:1px solid #334155;border-radius:16px;padding:16px;">
+    ${avisoDemo}
+    <h2 style="margin:0 0 4px 0;color:#10b981;font-size:19px;">${esCitas ? '📅 ' : '🛍️ '}${nombre}</h2>
+    <p style="margin:0 0 10px 0;color:#94a3b8;font-size:12.5px;">${esCitas ? 'Elige el servicio para agendar tu cita por WhatsApp:' : 'Toca + para armar tu pedido con cálculo automático:'}</p>
+    <div id="lista"></div>
+    <input id="dato" placeholder="${esCitas ? 'Tu nombre y día/hora preferida' : 'Tu nombre y dirección de entrega'}" oninput="render()" style="width:100%;box-sizing:border-box;margin-top:8px;padding:9px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:13px;"/>
+    <div id="tot" style="margin-top:10px;padding:9px;background:#090d16;border-radius:8px;font-weight:700;text-align:center;color:#10b981;font-size:14px;">Total: $0 COP</div>
+    <a id="btn" href="#" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-top:10px;padding:11px;border-radius:10px;background:#10b981;color:#052e16;font-weight:800;font-size:14px;">📲 Confirmar por WhatsApp</a>
+  </div>
+  <script>
+    const ITEMS = ${itemsJson};
+    const cant = { 0: 1 };
+    function mod(id, d){ cant[id] = Math.max(0, (cant[id]||0)+d); render(); }
+    function render(){
+      let total = 0; let sel = [];
+      document.getElementById('lista').innerHTML = ITEMS.map(it => {
+        const c = cant[it.id]||0; const sub = c * it.precio; total += sub;
+        if(c>0) sel.push(c+'x '+it.nombre+' ($'+sub.toLocaleString('es-CO')+')');
+        return '<div style="display:flex;justify-content:space-between;align-items:center;background:#0f172a;padding:7px 10px;border-radius:8px;margin-bottom:6px;border:1px solid #334155;">' +
+          '<div><div style="font-size:13px;font-weight:600;">'+it.nombre+'</div><div style="font-size:11.5px;color:#10b981;">$'+it.precio.toLocaleString('es-CO')+' COP</div></div>' +
+          '<div style="display:flex;align-items:center;gap:7px;"><button onclick="mod('+it.id+',-1)" style="width:26px;height:26px;border-radius:6px;border:none;background:#334155;color:#fff;cursor:pointer;">-</button><span>'+c+'</span><button onclick="mod('+it.id+',1)" style="width:26px;height:26px;border-radius:6px;border:none;background:#10b981;color:#052e16;font-weight:800;cursor:pointer;">+</button></div></div>';
+      }).join('');
+      document.getElementById('tot').textContent = 'Total estimado: $' + total.toLocaleString('es-CO') + ' COP';
+      const d = document.getElementById('dato').value || 'Por confirmar';
+      const msg = 'Hola ${nombre}! Quiero confirmar:\\n' + (sel.join('\\n')||'Consulta') + '\\nTotal: $' + total.toLocaleString('es-CO') + ' COP\\nDatos: ' + d;
+      document.getElementById('btn').href = 'https://wa.me/${wa}?text=' + encodeURIComponent(msg);
+    }
+    render();
+  <\/script>
+</body></html>`;
+    }
+
+    function actualizarTodo() {
+      if (modo !== 'cv') {
+        document.getElementById('liveFrame').srcdoc = construirAppHTML(!desbloqueadoPro);
+      } else {
+        document.getElementById('pNom').textContent = document.getElementById('cvNom').value;
+        document.getElementById('pCargo').textContent = document.getElementById('cvCargo').value;
+        document.getElementById('pCont').textContent = document.getElementById('cvCont').value;
+        document.getElementById('pPerf').textContent = document.getElementById('cvPerf').value;
+        const exp = document.getElementById('cvExp').value.split('\n').filter(Boolean);
+        document.getElementById('pExp').innerHTML = exp.map(l => {
+          const [e, r] = l.split('|');
+          return `<li><strong>${(e||'').trim()}:</strong> ${(r||'').trim()}</li>`;
+        }).join('');
+        document.getElementById('marcaAguaCV').style.display = desbloqueadoPro ? 'none' : 'flex';
+      }
+    }
+
+    function entregarRegaloGratis() {
+      if (modo === 'cv') {
+        alert('🎁 DIAGNÓSTICO ATS GRATIS:\n1. Tu estructura Harvard de 1 columna ya aumentó tu legibilidad en portales de empleo al 96%.\n2. Puedes revisar tu vista previa a la derecha.\n3. Cuando quieras descargar el PDF limpio sin marca de agua, usa el botón de Desbloqueo PRO ($15.000 COP).');
+      } else {
+        const blob = new Blob([construirAppHTML(true)], { type: 'text/html;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'demo_gratis_con_marca.html';
+        a.click();
+      }
+    }
+
+    function mostrarDesbloqueoPro() {
+      document.getElementById('cajaDesbloqueo').classList.remove('hidden');
+    }
+
+    function validarYDescargarPro() {
+      const ref = (document.getElementById('refNequi').value || '').trim();
+      if (ref.length < 6) {
+        alert('Por favor ingresa el número de referencia o comprobante de tu envío Nequi al 302 343 5919 (mínimo 6 caracteres).');
+        return;
+      }
+      desbloqueadoPro = true;
+      actualizarTodo();
+
+      if (modo === 'cv') {
+        alert('✅ ¡Versión PRO Desbloqueada! Se quitó la marca de agua. Ahora se abrirá la ventana para guardar tu PDF Formato Harvard limpio.');
+        window.print();
+      } else {
+        const htmlLimpio = construirAppHTML(false);
+        const blob = new Blob([htmlLimpio], { type: 'text/html;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        const slug = (document.getElementById('negNombre').value || 'mi_app').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        a.download = slug + '_PRO_SIN_MARCA.html';
+        a.click();
+        alert('✅ ¡Tu archivo PRO sin marca de agua se ha descargado automáticamente!');
+      }
+    }
+
+    actualizarTodo();
+  </script>
+</body>
+</html>

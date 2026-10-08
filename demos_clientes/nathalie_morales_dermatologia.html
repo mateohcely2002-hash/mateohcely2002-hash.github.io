@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathalie Morales Dermatología · Agendar Cita en 15 Segundos</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --accent:#10b981; --text:#f8fafc; --muted:#94a3b8; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
+    body { background:var(--bg); color:var(--text); padding:1.25rem; display:flex; justify-content:center; }
+    .app { width:100%; max-width:460px; background:var(--card); border:1px solid #334155; border-radius:16px; padding:1.4rem; box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+    .tag { display:inline-block; background:rgba(16,185,129,0.15); color:var(--accent); font-size:0.76rem; font-weight:700; padding:0.2rem 0.65rem; border-radius:999px; margin-bottom:0.5rem; }
+    h1 { font-size:1.35rem; margin-bottom:0.25rem; }
+    p.sub { color:var(--muted); font-size:0.86rem; margin-bottom:1.1rem; }
+    .item { display:flex; align-items:center; gap:0.65rem; background:#0f172a; border:1px solid #334155; padding:0.7rem 0.85rem; border-radius:10px; margin-bottom:0.5rem; cursor:pointer; }
+    .item input { width:18px; height:18px; accent-color:var(--accent); }
+    .item span { display:flex; justify-content:space-between; width:100%; font-size:0.9rem; }
+    .item small { color:var(--accent); font-weight:600; }
+    label.fld { display:block; font-size:0.82rem; color:var(--muted); margin:0.75rem 0 0.3rem; }
+    input[type="text"], select { width:100%; padding:0.65rem 0.75rem; border-radius:8px; border:1px solid #334155; background:#0f172a; color:#fff; font-size:0.9rem; }
+    .preview { margin-top:0.9rem; background:#090d16; border:1px dashed #334155; border-radius:8px; padding:0.75rem; font-size:0.82rem; color:#cbd5e1; white-space:pre-wrap; }
+    .btn { display:block; text-align:center; text-decoration:none; width:100%; margin-top:1rem; padding:0.85rem; border-radius:10px; background:var(--accent); color:#052e16; font-weight:800; font-size:0.96rem; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <span class="tag">Medellín · Dermatología Clínica y Estética</span>
+    <h1>Nathalie Morales Dermatología</h1>
+    <p class="sub">Selecciona el servicio y horario preferido. Tu solicitud llegará lista al WhatsApp oficial.</p>
+
+    <div id="listaItems">
+      <label class="item">
+        <input type="checkbox" value="Consulta Dermatológica (Presencial / Virtual)" onchange="actualizarResumen()" checked/>
+        <span><strong>Consulta Dermatológica</strong> <small>Presencial / Virtual</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Rejuvenecimiento / Láser (Valoración)" onchange="actualizarResumen()" />
+        <span><strong>Rejuvenecimiento / Láser</strong> <small>Valoración</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Tratamiento de Acné / Manchas (Cita Especializada)" onchange="actualizarResumen()" />
+        <span><strong>Tratamiento de Acné / Manchas</strong> <small>Cita Especializada</small></span>
+      </label>
+      <label class="item">
+        <input type="checkbox" value="Control de Paciente (Seguimiento)" onchange="actualizarResumen()" />
+        <span><strong>Control de Paciente</strong> <small>Seguimiento</small></span>
+      </label>
+    </div>
+
+    <label class="fld">Tu nombre</label>
+    <input type="text" id="nombreCliente" placeholder="Ej. Camila Gómez" oninput="actualizarResumen()" />
+
+    <label class="fld">Jornada / Día preferido</label>
+    <select id="horario" onchange="actualizarResumen()">
+        <option value="Hoy mismo (Lo antes posible)">Hoy mismo (Lo antes posible)</option>
+        <option value="Mañana en la mañana">Mañana en la mañana</option>
+        <option value="Mañana en la tarde">Mañana en la tarde</option>
+        <option value="Esta semana (Acordar hora)">Esta semana (Acordar hora)</option>
+    </select>
+
+    <label class="fld">Barrio / Sede o Nota adicional</label>
+    <input type="text" id="extra" placeholder="Escribe aquí..." oninput="actualizarResumen()" />
+
+    <div class="preview" id="vistaPrevia"></div>
+
+    <a id="btnEnviarWa" class="btn" href="https://wa.me/573053901990" target="_blank">
+      📲 Enviar ahora al WhatsApp de Nathalie Morales Dermatología
+    </a>
+  </div>
+
+  <script>
+    function actualizarResumen() {
+      const checks = Array.from(document.querySelectorAll('#listaItems input:checked')).map(c => '• ' + c.value);
+      const nombre = document.getElementById('nombreCliente').value.trim() || 'Cliente';
+      const horario = document.getElementById('horario').value;
+      const extra = document.getElementById('extra').value.trim() || 'Por confirmar';
+      const seleccion = checks.length ? checks.join('\n') : '• Información general';
+
+      const msg = `Hola equipo de Nathalie Morales Dermatología 👋\nSoy *${nombre}* y quiero confirmar:\n${seleccion}\n\n🕒 Preferencia: ${horario}\n📍 Detalle: ${extra}`;
+      document.getElementById('vistaPrevia').textContent = msg;
+      document.getElementById('btnEnviarWa').href = `https://wa.me/573053901990?text=${encodeURIComponent(msg)}`;
+    }
+    actualizarResumen();
+  </script>
+</body>
+</html>
